@@ -13,6 +13,13 @@ class Config:
     if _db_url and _db_url.startswith("postgres://"):
         _db_url = _db_url.replace("postgres://", "postgresql://", 1)
     DATABASE_URL = _db_url
+    
+    # Optional Proxy variables for running in restricted local networks
+    PROXY_SCHEME = os.environ.get('PROXY_SCHEME', 'socks5')
+    PROXY_HOSTNAME = os.environ.get('PROXY_HOSTNAME')
+    PROXY_PORT = int(os.environ.get('PROXY_PORT')) if os.environ.get('PROXY_PORT') else None
+    PROXY_USERNAME = os.environ.get('PROXY_USERNAME')
+    PROXY_PASSWORD = os.environ.get('PROXY_PASSWORD')
     # It is strongly recommended to set sensitive info via env vars and NOT commit real values.
 
 class Messages:

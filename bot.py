@@ -34,13 +34,26 @@ def main():
     t = threading.Thread(target=start_health_check, daemon=True)
     t.start()
 
+    proxy = None
+    if Config.PROXY_HOSTNAME and Config.PROXY_PORT:
+        proxy = dict(
+            scheme=Config.PROXY_SCHEME,
+            hostname=Config.PROXY_HOSTNAME,
+            port=Config.PROXY_PORT
+        )
+        if Config.PROXY_USERNAME:
+            proxy["username"] = Config.PROXY_USERNAME
+        if Config.PROXY_PASSWORD:
+            proxy["password"] = Config.PROXY_PASSWORD
+
     try:
         app = Client(
             "GDrive-Uploader-TG-Bot",
             bot_token=Config.BOT_TOKEN,
             api_id=Config.APP_ID,
             api_hash=Config.API_HASH,
-            plugins=plugins
+            plugins=plugins,
+            proxy=proxy
         )
         app.run()
     except Exception as e:
