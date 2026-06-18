@@ -7,7 +7,12 @@ class Config:
     BOT_TOKEN = os.environ.get('BOT_TOKEN') if ENV else 'YOUR_BOT_TOKEN_HERE'
     APP_ID = os.environ.get('APP_ID') if ENV else 'YOUR_APP_ID_HERE'
     API_HASH = os.environ.get('API_HASH') if ENV else 'YOUR_API_HASH_HERE'
-    DATABASE_URL = os.environ.get('DATABASE_URL') if ENV else 'YOUR_DB_URL_HERE'
+    
+    # Sanitize DATABASE_URL to replace deprecated postgres:// with postgresql://
+    _db_url = os.environ.get('DATABASE_URL') if ENV else 'YOUR_DB_URL_HERE'
+    if _db_url and _db_url.startswith("postgres://"):
+        _db_url = _db_url.replace("postgres://", "postgresql://", 1)
+    DATABASE_URL = _db_url
     # It is strongly recommended to set sensitive info via env vars and NOT commit real values.
 
 class Messages:
