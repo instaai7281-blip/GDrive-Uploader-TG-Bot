@@ -8,11 +8,6 @@ os.environ["APP_ID"] = "27317669"
 os.environ["BOT_TOKEN"] = "8146920201:AAHlctyHnhgLPQbqAon7gwoCLSnlDVC0cpc"
 os.environ["DATABASE_URL"] = "sqlite:///gdrive_bot.db"
 
-# Proxy configuration from user
-os.environ["PROXY_HOSTNAME"] = "206.123.156.223"
-os.environ["PROXY_PORT"] = "4074"
-os.environ["PROXY_SCHEME"] = "socks5"
-
 if __name__ == "__main__":
     import bot
     print("[INFO] Starting bot with custom environment configuration...")
