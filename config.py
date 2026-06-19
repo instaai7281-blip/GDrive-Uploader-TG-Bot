@@ -20,6 +20,9 @@ class Config:
     PROXY_PORT = int(os.environ.get('PROXY_PORT')) if os.environ.get('PROXY_PORT') else None
     PROXY_USERNAME = os.environ.get('PROXY_USERNAME')
     PROXY_PASSWORD = os.environ.get('PROXY_PASSWORD')
+    
+    # Use alternative port (5222 instead of 443) for Telegram connection bypass
+    ALT_PORT = os.environ.get('ALT_PORT', 'False').lower() == 'true'
     # It is strongly recommended to set sensitive info via env vars and NOT commit real values.
 
 class Messages:

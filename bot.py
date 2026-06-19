@@ -45,6 +45,7 @@ def main():
             proxy["username"] = Config.PROXY_USERNAME
         if Config.PROXY_PASSWORD:
             proxy["password"] = Config.PROXY_PASSWORD
+    print(f"[DEBUG] Pyrogram Client initialized with proxy: {proxy}")
 
     try:
         app = Client(
@@ -53,7 +54,8 @@ def main():
             api_id=Config.APP_ID,
             api_hash=Config.API_HASH,
             plugins=plugins,
-            proxy=proxy
+            proxy=proxy,
+            alt_port=Config.ALT_PORT
         )
         app.run()
     except Exception as e:
