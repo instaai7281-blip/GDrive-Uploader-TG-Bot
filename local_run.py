@@ -1,6 +1,12 @@
 import os
+import builtins
+import functools
+
+# Force print to always flush immediately
+builtins.print = functools.partial(builtins.print, flush=True)
 
 # Set environment variables for GDrive-Uploader-TG-Bot
+os.environ["PYTHONUNBUFFERED"] = "1"
 os.environ["PORT"] = "8080"
 os.environ["ENV"] = "true"
 os.environ["API_HASH"] = "11b88c331c5d44fde57cf91de1a2156b"
